@@ -16,6 +16,8 @@ AudioPlaySdWav           playSdWav2;     //xy=250,322
 AudioPlaySdWav           playSdWav1;     //xy=251,275
 AudioMixer4              mixer1;         //xy=687,408
 AudioMixer4              mixer2;         //xy=698,536
+AudioAmplifier           amp1;           //xy=967,495
+AudioAmplifier           amp2;           //xy=974,589
 AudioOutputI2S           i2s1;           //xy=1095,733
 AudioConnection          patchCord1(playSdWav4, 0, mixer1, 3);
 AudioConnection          patchCord2(playSdWav4, 1, mixer2, 3);
@@ -25,8 +27,10 @@ AudioConnection          patchCord5(playSdWav2, 0, mixer1, 1);
 AudioConnection          patchCord6(playSdWav2, 1, mixer2, 1);
 AudioConnection          patchCord7(playSdWav1, 0, mixer1, 0);
 AudioConnection          patchCord8(playSdWav1, 1, mixer2, 0);
-AudioConnection          patchCord9(mixer1, 0, i2s1, 0);
-AudioConnection          patchCord10(mixer2, 0, i2s1, 1);
+AudioConnection          patchCord9(mixer1, amp1);
+AudioConnection          patchCord10(mixer2, amp2);
+AudioConnection          patchCord11(amp1, 0, i2s1, 0);
+AudioConnection          patchCord12(amp2, 0, i2s1, 1);
 AudioControlSGTL5000     sgtl5000_1;     //xy=842,836
 // GUItool: end automatically generated code
 

@@ -20,11 +20,21 @@ Serial.begin(9600);
 init_mpr121();
 init_player();
 pinMode(rebootButton, INPUT_PULLUP);
+pinMode(volumePin, INPUT);
 delay(500);
 }
 
 
 void loop() {
+
+int knob = analogRead(volumePin); // knob = 0 to 1023
+float gain = (float)knob / 1023.0;
+// Serial.print("Gain is: ");
+// Serial.println(gain);
+// delay(500);
+amp1.gain(gain);
+amp2.gain(gain);
+
 currtouched1 = mprBoard_A.touched();
 
 if(digitalRead(rebootButton) == LOW){
